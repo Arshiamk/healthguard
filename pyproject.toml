@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "healthguard"
-version = "0.1.0"
+version = "0.1.1"
 description = "Clinical AI guardrails: PHI redaction, hallucination detection, policy enforcement, and audit trails for LLMs in healthcare"
 readme = "README.md"
 license = { text = "Apache-2.0" }
