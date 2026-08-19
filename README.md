@@ -13,6 +13,20 @@ A lightweight, zero-infrastructure SDK that adds a safety layer between your use
   <img src="docs/demo.gif" alt="HealthGuard redacting PHI, blocking a prompt injection, and catching an unsafe ibuprofen dose" width="880">
 </p>
 
+> [!IMPORTANT]
+> **HealthGuard is a developer tool, not a medical device.**
+> It is not certified, it does not give medical advice, and it does not make an
+> application HIPAA, UKCA, CE or FDA compliant. It reduces some well-understood
+> failure modes; it does not make an AI system safe, and it is not a substitute
+> for clinical review or professional judgement.
+>
+> Checks are heuristic. PHI redaction can miss unusual formats, and dosage rules
+> cover common over-the-counter medicines rather than the full pharmacopoeia.
+> Treat every result as a signal for a human to act on, never as an approval.
+>
+> If you are deploying AI in a clinical setting, take qualified legal and
+> clinical advice. See the [full disclaimer](#disclaimer).
+
 ---
 
 ## The problem
@@ -268,4 +282,30 @@ Apache 2.0 — see [LICENSE](LICENSE).
 
 ## Disclaimer
 
-HealthGuard is a developer tool. It is **not** a certified medical device and does not constitute medical advice. It does not guarantee HIPAA compliance. Always consult qualified legal and clinical professionals when deploying AI in healthcare.
+**HealthGuard is a developer tool. It is not a certified medical device.**
+
+It does not constitute medical advice, and it does not diagnose, treat, or make
+clinical decisions. Using it does not make an application HIPAA, UKCA, CE or FDA
+compliant, and it does not by itself satisfy any regulatory obligation.
+
+**What it does:** reduces a set of well-understood failure modes when a language
+model is used in a healthcare context.
+
+**What it does not do:** make an AI system safe. Every check is heuristic and
+will have both false negatives and false positives. PHI redaction is pattern
+based and can miss unusual name, identifier or date formats. Dosage rules cover
+common over-the-counter medicines, not the full pharmacopoeia, and do not
+account for a patient's age, weight, renal function, pregnancy, comorbidities or
+interactions.
+
+Treat every result as a signal for a human to review, never as an approval or a
+clearance. HealthGuard is not a substitute for clinical review, professional
+judgement, or a regulated quality management system.
+
+If you are deploying AI in a clinical setting, obtain qualified legal, clinical
+and regulatory advice. Responsibility for the safety and compliance of your
+application rests with you, not with this library.
+
+Provided under the Apache License 2.0 **without warranty of any kind** — see
+sections 7 (Disclaimer of Warranty) and 8 (Limitation of Liability) of the
+[LICENSE](LICENSE).
