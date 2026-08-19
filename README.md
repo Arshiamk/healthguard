@@ -5,6 +5,7 @@
 A lightweight, zero-infrastructure SDK that adds a safety layer between your users and any LLM in a healthcare context — in three lines of code.
 
 [![CI](https://github.com/Arshiamk/healthguard/actions/workflows/ci.yml/badge.svg)](https://github.com/Arshiamk/healthguard/actions/workflows/ci.yml)
+[![PyPI version](https://img.shields.io/pypi/v/healthguard.svg)](https://pypi.org/project/healthguard/)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
