@@ -10,7 +10,7 @@ A lightweight, zero-infrastructure SDK that adds a safety layer between your use
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 <p align="center">
-  <img src="docs/healthguard-demo.gif" alt="HealthGuard redacting PHI, blocking a prompt injection, and catching an unsafe ibuprofen dose" width="880">
+  <img src="docs/demo.gif" alt="HealthGuard redacting PHI, blocking a prompt injection, and catching an unsafe ibuprofen dose" width="880">
 </p>
 
 ---
