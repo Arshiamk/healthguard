@@ -9,6 +9,10 @@ A lightweight, zero-infrastructure SDK that adds a safety layer between your use
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
+<p align="center">
+  <img src="docs/healthguard-demo.gif" alt="HealthGuard redacting PHI, blocking a prompt injection, and catching an unsafe ibuprofen dose" width="880">
+</p>
+
 ---
 
 ## The problem
@@ -41,9 +45,9 @@ hg = HealthGuard()
 
 # 1. Redact PHI before it reaches the model
 safe_prompt = hg.redact(
-    "Patient John Smith, DOB 1980-03-15, SSN 123-45-6789 reports chest pain"
+    "John Smith, DOB 1980-03-15, SSN 123-45-6789 reports chest pain"
 )
-# → "Patient [NAME], DOB [DATE], SSN [SSN] reports chest pain"
+# → "[NAME], DOB [DATE], SSN [SSN] reports chest pain"
 
 # 2. Block prompt injection attacks
 result = hg.check_prompt(
