@@ -1,0 +1,51 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Build and publish to PyPI
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    # Trusted Publishing (OIDC) — no API token is stored in this repository.
+    # Configure the publisher once at https://pypi.org/manage/account/publishing/
+    #   owner: Arshiamk   repository: healthguard
+    #   workflow: release.yml   environment: pypi
+    environment:
+      name: pypi
+      url: https://pypi.org/p/healthguard
+    permissions:
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - uses: astral-sh/setup-uv@f0ec1fc3b38f5e7cd731bb6ce540c5af426746bb # v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify tag matches project version
+        run: |
+          set -euo pipefail
+          tag="${GITHUB_REF_NAME#v}"
+          version="$(python -c 'import tomllib,pathlib; print(tomllib.loads(pathlib.Path("pyproject.toml").read_text())["project"]["version"])')"
+          if [ "$tag" != "$version" ]; then
+            echo "Release tag '$tag' does not match project version '$version'." >&2
+            exit 1
+          fi
+          echo "Publishing version $version"
+
+      - name: Build sdist and wheel
+        run: uv build
+
+      # hatchling emits Metadata-Version 2.5; twine < 7 rejects it as invalid.
+      - name: Check distribution metadata
+        run: uvx --from twine==7.0.0 twine check dist/*
+
+      - uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # v1.14.2
